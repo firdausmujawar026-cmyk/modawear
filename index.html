@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ModaWear - Home</title>
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fafafa;
+    color: #333;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+
+  /* Header */
+  header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+  }
+  nav a {
+    margin-left: 2rem;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+  }
+  nav a:hover,
+  nav a.active {
+    color: #111;
+  }
+  nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #111;
+  }
+
+  /* Hero slider */
+  .hero-slider {
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    transition: left 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    color: #fff;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3); /* dark overlay */
+  }
+  .slide.active {
+    left: 0;
+    z-index: 2;
+  }
+  .slide-content {
+    max-width: 450px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  .slide-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  }
+  .slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.4;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Button styling */
+  .btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: burlywood;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    color: #000;
+  }
+
+  .prev-btn {
+    left: 15px;
+  }
+  .next-btn {
+    right: 15px;
+  }
+
+  /* Categories */
+  section.categories {
+    margin: 3rem 0;
+  }
+  section.categories h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #111;
+  }
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .category-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .category-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+  }
+  .category-card:hover img,
+  .category-card:focus-within img {
+    transform: scale(1.05);
+  }
+  .category-card h3 {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    margin: 0;
+    color: white;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  }
+  .category-card button {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .category-card button:hover,
+  .category-card button:focus {
+    background-color: burlywood;
+    outline: none;
+    color: #000;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #f2f2f2;
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .slide-content {
+      max-width: 90%;
+      padding: 1.5rem 2rem;
+    }
+    .slide-content h1 {
+      font-size: 2rem;
+    }
+    .slide-content p {
+      font-size: 1rem;
+    }
+    .category-card img {
+      height: 180px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" tabindex="0" role="link" aria-label="ModaWear Home" onclick="location.href='index.html'" onkeydown="if(event.key==='Enter') location.href='index.html';">ModaWear</div>
+    <nav>
+      <a href="index.html" class="active" aria-current="page">Home</a>
+      <a href="/women">Women</a>
+      <a href="/men">Men</a>
+      <a href="/kids">Kids</a>
+      <a href="#">Cart</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-slider" aria-label="Featured Products Slider" tabindex="0">
+  <div class="slide active" style="background-image: url('https://image.hm.com/content/dam/global_campaigns/season_02/women/9102a/9102A-3x2-CPD-3-festive-2025-women.jpg?imwidth=1366');" role="group" aria-roledescription="slide" aria-label="New Season Arrivals" aria-hidden="false">
+    <div class="slide-content">
+      <h1>New Season Arrivals</h1>
+      <p>Discover the latest fashion trends for all occasions.</p>
+      <button onclick="navigateTo('/women')" class="btn" aria-label="Shop Women Collection">Women</button>
+    </div>
+  </div>
+  <div class="slide" style="background-image: url('https://image.hm.com/content/dam/global_campaigns/season_02/men/9102a/9102A-3x2-CPD-3-festive-2025-men.jpg?imwidth=1366');" role="group" aria-roledescription="slide" aria-label="Effortless Style for Men" aria-hidden="true">
+    <div class="slide-content">
+      <h1>Effortless Style for Men</h1>
+      <p>Comfort meets timeless design.</p>
+      <button onclick="navigateTo('/men')" class="btn" aria-label="Shop Men Collection">Men</button>
+    </div>
+  </div>
+  <div class="slide" style="background-image: url('https://image.hm.com/content/dam/global_campaigns/season_02/kids/9102a/9102A-16x9.jpg?imwidth=1366');" role="group" aria-roledescription="slide" aria-label="Adorable Kids Collection" aria-hidden="true">
+    <div class="slide-content">
+      <h1>Adorable Kids Collection</h1>
+      <p>Soft fabrics for your little ones.</p>
+      <button onclick="navigateTo('/kids')" class="btn" aria-label="Shop Kids Collection">Kids</button>
+    </div>
+  </div>
+  <button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+  <button class="slider-btn next-btn" aria-label="Next Slide">&#10095;</button>
+</section>
+
+<section class="categories container">
+  <h2>Shop by Category</h2>
+  <div class="category-grid">
+    <div class="category-card" tabindex="0" role="link" aria-label="Women Category" onclick="navigateTo('/women')" onkeydown="if(event.key==='Enter') navigateTo('/women');">
+      <img src="https://image.hm.com/assets/hm/69/5a/695a867a7c298885048d3d5661993f877233fa90.jpg?imwidth=1536" alt="Women category image" />
+      <button onclick="navigateTo('/women'); event.stopPropagation();" class="btn" aria-label="Shop Women">Women</button>
+    </div>
+    <div class="category-card" tabindex="0" role="link" aria-label="Men Category" onclick="navigateTo('/men')" onkeydown="if(event.key==='Enter') navigateTo('/men');">
+      <img src="https://image.hm.com/assets/hm/f0/79/f0792cebdd6bb1547366b952980a4cc3a5168f5b.jpg?imwidth=1536" alt="Men category image" />
+      <button onclick="navigateTo('/men'); event.stopPropagation();" class="btn" aria-label="Shop Men">Men</button>
+    </div>
+    <div class="category-card" tabindex="0" role="link" aria-label="Kids Category" onclick="navigateTo('/kids')" onkeydown="if(event.key==='Enter') navigateTo('/kids');">
+      <img src="https://image.hm.com/assets/hm/8d/b3/8db3f9e6a39a840c0f686d8f99c3f846090bb90e.jpg?imwidth=768" alt="Kids category image" />
+      <button onclick="navigateTo('/kids'); event.stopPropagation();" class="btn" aria-label="Shop Kids">Kids</button>
+    </div>
+  </div>
+</section>
+
+<section class="promo-video container" aria-label="Promotional Video">
+  <video 
+    src="https://image.hm.com/content/dam/ind-local-assets/festive-9102/6279905_Festive_Ladies_teaser_16x9_10s.mp4" 
+    controls 
+    autoplay 
+    muted 
+    loop 
+    playsinline
+    style="width: 100%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);"
+  >
+    Sorry, your browser does not support embedded videos.
+  </video>
+</section>
+
+
+<footer>
+  &copy; 2025 ModaWear. All rights reserved.
+</footer>
+
+<script>
+  // Navigation helper
+  function navigateTo(path) {
+    window.location.href = path;
+  }
+
+  // Hero slider functionality
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  let currentIndex = 0;
+  let slideInterval;
+
+  function showSlide(idx) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === idx);
+      slide.setAttribute('aria-hidden', i !== idx);
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+    showSlide(currentIndex);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    resetInterval();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    resetInterval();
+  });
+
+  // Keyboard navigation for slider
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      resetInterval();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      resetInterval();
+    }
+  });
+
+  // Pause slider on hover/focus
+  const heroSlider = document.querySelector('.hero-slider');
+  heroSlider.addEventListener('mouseenter', pauseInterval);
+  heroSlider.addEventListener('mouseleave', startInterval);
+  heroSlider.addEventListener('focusin', pauseInterval);
+  heroSlider.addEventListener('focusout', startInterval);
+
+  function startInterval() {
+    slideInterval = setInterval(nextSlide, 3000);  // changed to 3 seconds
+  }
+  function pauseInterval() {
+    clearInterval(slideInterval);
+  }
+  function resetInterval() {
+    pauseInterval();
+    startInterval();
+  }
+
+  // Initialize
+  showSlide(currentIndex);
+  startInterval();
+</script>
+
+</body>
+</html>
