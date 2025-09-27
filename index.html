@@ -251,21 +251,21 @@
     <div class="slide-content">
       <h1>New Season Arrivals</h1>
       <p>Discover the latest fashion trends for all occasions.</p>
-      <button onclick="navigateTo('/women')" class="btn" aria-label="Shop Women Collection">Women</button>
+      <button onclick="women()" class="btn" aria-label="Shop Women Collection">Women</button>
     </div>
   </div>
   <div class="slide" style="background-image: url('https://image.hm.com/content/dam/global_campaigns/season_02/men/9102a/9102A-3x2-CPD-3-festive-2025-men.jpg?imwidth=1366');" role="group" aria-roledescription="slide" aria-label="Effortless Style for Men" aria-hidden="true">
     <div class="slide-content">
       <h1>Effortless Style for Men</h1>
       <p>Comfort meets timeless design.</p>
-      <button onclick="navigateTo('/men')" class="btn" aria-label="Shop Men Collection">Men</button>
+      <button onclick="men()" class="btn" aria-label="Shop Men Collection">Men</button>
     </div>
   </div>
   <div class="slide" style="background-image: url('https://image.hm.com/content/dam/global_campaigns/season_02/kids/9102a/9102A-16x9.jpg?imwidth=1366');" role="group" aria-roledescription="slide" aria-label="Adorable Kids Collection" aria-hidden="true">
     <div class="slide-content">
       <h1>Adorable Kids Collection</h1>
       <p>Soft fabrics for your little ones.</p>
-      <button onclick="navigateTo('/kids')" class="btn" aria-label="Shop Kids Collection">Kids</button>
+      <button onclick="kids()" aria-label="Shop Kids Collection">Kids</button>
     </div>
   </div>
   <button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
@@ -277,15 +277,15 @@
   <div class="category-grid">
     <div class="category-card" tabindex="0" role="link" aria-label="Women Category" onclick="navigateTo('/women')" onkeydown="if(event.key==='Enter') navigateTo('/women');">
       <img src="https://image.hm.com/assets/hm/69/5a/695a867a7c298885048d3d5661993f877233fa90.jpg?imwidth=1536" alt="Women category image" />
-      <button onclick="navigateTo('/women'); event.stopPropagation();" class="btn" aria-label="Shop Women">Women</button>
+      <button onclick="women()" class="btn" aria-label="Shop Women">Women</button>
     </div>
     <div class="category-card" tabindex="0" role="link" aria-label="Men Category" onclick="navigateTo('/men')" onkeydown="if(event.key==='Enter') navigateTo('/men');">
       <img src="https://image.hm.com/assets/hm/f0/79/f0792cebdd6bb1547366b952980a4cc3a5168f5b.jpg?imwidth=1536" alt="Men category image" />
-      <button onclick="navigateTo('/men'); event.stopPropagation();" class="btn" aria-label="Shop Men">Men</button>
+      <button onclick="men()" class="btn" aria-label="Shop Men">Men</button>
     </div>
     <div class="category-card" tabindex="0" role="link" aria-label="Kids Category" onclick="navigateTo('/kids')" onkeydown="if(event.key==='Enter') navigateTo('/kids');">
       <img src="https://image.hm.com/assets/hm/8d/b3/8db3f9e6a39a840c0f686d8f99c3f846090bb90e.jpg?imwidth=768" alt="Kids category image" />
-      <button onclick="navigateTo('/kids'); event.stopPropagation();" class="btn" aria-label="Shop Kids">Kids</button>
+      <button onclick="kids()" class="btn" aria-label="Shop Kids">Kids</button>
     </div>
   </div>
 </section>
@@ -381,6 +381,18 @@
   // Initialize
   showSlide(currentIndex);
   startInterval();
+
+  function women() {
+    window.location.href ="/women"
+  }
+
+  function men() {
+    window.location.href ="/men"
+  }
+
+  function kids() {
+    window.location.href ="/kids"
+  }
 </script>
 
 </body>
